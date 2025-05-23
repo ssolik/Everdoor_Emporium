@@ -120,7 +120,7 @@ The project utilizes a comprehensive dataset comprising six interconnected CSV f
 -	support_tickets.csv (3000 rows)
 -	transactions.csv (32,296 rows)
 
-![Everdoor Emporium Entity Relationship Diagram](Everdoor-Emporium_ERD.png)  
+![Everdoor Emporium Entity Relationship Diagram](Images/Everdoor-Emporium_ERD.png)  
 Everdoor Emporium Entity Relationship Diagram (ERD)\
 \
 The live ERD can be viewed here: [ERD](https://dbdocs.io/ssolik/Everdoor_Emporium_ERD?view=relationships)

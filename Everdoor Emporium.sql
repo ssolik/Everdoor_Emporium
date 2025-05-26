@@ -126,8 +126,6 @@ SELECT *
 FROM campaigns;
 
 
-
-
 /* 
 Num records in Excel: 1000
 Num records in SQL: 1000
@@ -298,6 +296,56 @@ t.customer_id = c.customer_id
 SELECT *
 FROM temp_customer_transaction
 ;
+
+
+
+WITH 
+customer_transaction AS (
+    SELECT 
+        t.transaction_id, t.transaction_date, (t.price * t.quantity) AS order_total, t.product_name, t.product_category, t.store_location,
+	    cus.customer_id, cus.age, cus.gender, cus.city AS customer_city, cus.state AS customer_state, cus.registration_date
+    FROM transactions t
+        JOIN customers cus ON t.customer_id = cus.customer_id
+),  
+campaign_segment AS (
+    SELECT
+        campaign_id, target_segment,
+        CASE
+            WHEN cam.target_segment IN ('Young Adults (18-25)', 'Adults (26-40)''Seniors (60+)', 'Middle-aged (41-60)', ) THEN 'age_segment'
+            WHEN cam.target_segment IN ('East Coast', 'Midwest', 'Southern States', 'West Coast') THEN 'geo_segment'
+            WHEN cam.target_segment IN ('Home Improvement', 'Kitchen Enthusiasts', 'Technology Enthusiasts') THEN 'product_segment'
+            ELSE ""
+        END AS segment_type
+    FROM campaigns cam
+),  
+targets AS (
+    SELECT ct.transaction_id, ct.transaction_date, ct.product_category, ct.customer_state, ct.age,
+        CASE
+            WHEN ct.age BETWEEN 18 AND 25 THEN 'Young Adults (18-25)'
+	        WHEN ct.age BETWEEN 26 AND 40 THEN 'Adults (26-40)'
+            WHEN ct.age BETWEEN 41 AND 60 THEN 'Middle-aged (41-60)'
+            WHEN ct.age > 60 THEN 'Seniors (60+)'
+            ELSE ''
+        END AS age_segment,	
+        CASE
+    		WHEN ct.state IN ('Connecticut', 'Maine', 'Massachusetts', 'New Hampshire', 'New Jersey', 'New York', 'Rhode Island', 'Pennsylvania', 'Vermont', 'Washington, D.C.')
+    			THEN 'East Coast'
+    		WHEN ct.state IN ('Illinois', 'Indiana', 'Iowa', 'Kansas', 'Michigan', 'Minnesota', 'Missouri', 'Nebraska', 'North Dakota', 'Ohio', 'South Dakota', 'Wisconsin')
+    			THEN 'Midwest'
+    		WHEN ct.state IN ('Alabama', 'Arkansas', 'Delaware', 'Florida', 'Georgia', 'Kentucky', 'Louisiana', 'Maryland', 'Mississippi', 'North Carolina', 'Oklahoma', 'South Carolina', 'Tennessee', 'Texas', 'Virginia', 'West Virginia')
+    			THEN 'Southern States'
+    		WHEN ct.state IN ('Alaska', 'Arizona', 'California', 'Colorado', 'Hawaii', 'Idaho', 'Montana', 'Nevada', 'New Mexico', 'Oregon', 'Utah', 'Washington','Wyoming')
+    			THEN 'West Coast'
+            ELSE ''
+        END AS geo_segment,
+        CASE
+            WHEN ct.product_category IN ('Cookware', 'Kitchen Appliances', 'Small Kitchen Appliances') THEN 'Kitchen Enthusiasts'
+		    WHEN ct.product_category IN ('Bedding', 'Furniture', 'Home Decor', 'Smart Home Devices') THEN 'Home Improvement'
+		    WHEN ct.product_category IN ('Audio Equipment', 'Computer Accessories', 'Desktop Computers', 'Gaming Consoles', 'Laptops', 'Smartphones', 'Tablets', 'TVs') THEN 'Technology Enthusiasts'
+            ELSE ''
+        END AS product_segment
+    FROM customer_transaction AS ct
+)
 
 
 /*

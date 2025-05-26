@@ -92,7 +92,7 @@ Sales were well distributed across **Online** and **Brick & Mortar** channels. W
 
 ## Project Technical Details
 ### Tech Stack & Methodology
--	End to End Analysis
+-	End-to-End Analysis
 -	Excel:
     -	Data Cleaning & Standardization
     -	Data Formatting

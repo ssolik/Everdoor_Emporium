@@ -311,7 +311,7 @@ campaign_segment AS (
     SELECT
         campaign_id, target_segment,
         CASE
-            WHEN cam.target_segment IN ('Young Adults (18-25)', 'Adults (26-40)''Seniors (60+)', 'Middle-aged (41-60)', ) THEN 'age_segment'
+            WHEN cam.target_segment IN ('Young Adults (18-25)', 'Adults (26-40)''Seniors (60+)', 'Middle-aged (41-60)', 'Seniors (60+)') THEN 'age_segment'
             WHEN cam.target_segment IN ('East Coast', 'Midwest', 'Southern States', 'West Coast') THEN 'geo_segment'
             WHEN cam.target_segment IN ('Home Improvement', 'Kitchen Enthusiasts', 'Technology Enthusiasts') THEN 'product_segment'
             ELSE ""
@@ -347,6 +347,23 @@ targets AS (
     FROM customer_transaction AS ct
 )
 
+
+SELECT
+    cam.campaign_name, cam.campaign_type, cam.target_segment, campaign_segment.segment_type, cam.start_date, cam.end_date, (cam.end_date + INTERVAL 30 DAY) AS attrition_window_end_date,
+    ct.age, ct.customer_state, ct.order_total, ct.transaction_date, ct.transaction_id, ct.product_category, ct.store_location, ct.gender, ct.customer_city
+FROM
+    campaigns cam
+    INNER JOIN customer_transaction ct
+        ON ct.transaction_date BETWEEN cam.start_date AND (cam.end_date + INTERVAL 30 DAY)
+    JOIN campaign_segment
+        ON cam.campaign_id = campaign_segment.campaign_id
+    LEFT JOIN targets AS target_age
+        ON cam.target_segment = target_age.age_segment
+    LEFT JOIN targets AS target_geo
+        ON cam.target_segment = target_geo.geo_segment
+    LEFT JOIN targets AS target_product
+        ON cam.target_segment = target_product.product_segment
+;    
 
 /*
 JOIN temp_customer_transaction to campaigns table to identify sales totals per campaign

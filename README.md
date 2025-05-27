@@ -8,7 +8,7 @@ Technical Details about the project can be found here: <a href="#project-technic
 
 ![Everdoor Emporium Sales Tableau Dashboard](Images/Everdoor_Emporium_Sales-Dashboard.png)\
 \
-Thw live Tableau Daashboards can be viewed here:  [Tableau Public Dashboards](https://public.tableau.com/app/profile/scott.solik/vizzes)
+The live Tableau Daashboards can be viewed here:  [Tableau Public Dashboards](https://public.tableau.com/app/profile/scott.solik/vizzes)
 
 ## Key Takeaways
 

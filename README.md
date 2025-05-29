@@ -134,7 +134,7 @@ Key insights derived from the analysis were visualized using Tableau dashboards 
 The original (raw) data files can be viewed here: [Raw CSV Files](https://github.com/ssolik/Everdoor_Emporium/tree/main/Data/RAW)\
 The cleaned data files can be viewed here: [Cleaned CSV Files](https://github.com/ssolik/Everdoor_Emporium/tree/main/Data/Cleaned)\
 The Issue Log from the data cleaning process can be viewed here: [Issue Log](https://github.com/ssolik/Everdoor_Emporium/blob/main/Everdoor-Emporium_Data-Cleaning_Issue-Log.xlsx)  
-The SQL script is here: [SQL Script](https://github.com/ssolik/Everdoor_Emporium/blob/main/Everdoor%20Emporium.sql)
+The SQL script is here: [SQL Script](https://github.com/ssolik/Everdoor_Emporium/blob/main/Everdoor_Emporium.sql)
 
 
 ## Marketing Campaign Performance Definitions

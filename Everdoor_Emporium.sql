@@ -91,7 +91,7 @@ CREATE TABLE support_tickets (
 	submission_date DATETIME,
 	resolution_date DATETIME,
 	resolution_status VARCHAR(255),
-	resolustion_time_hours FLOAT, -- Typo in "resolution_time_hours"
+	resolution_time_hours FLOAT,
 	customer_satisfaction INT,
 	notes TEXT
 );

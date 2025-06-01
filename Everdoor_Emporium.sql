@@ -1,5 +1,8 @@
-
--- Everdoor Emporium
+/* ----------------------------------------
+ Title: 		Everdoor Emporium Project
+ Author: 		Scott Solik
+ Last Modified: June 1, 2025
+------------------------------------------*/
 
 /* -----------------------------
    Create database and tables
@@ -224,7 +227,7 @@ targets AS (
     FROM customer_transaction AS ct
 )
 
--- Final selection: match transactions to active campaigns within the attribution window and by target segment
+-- Final selection: match transactions occuring within the attribution window, by target segment, to 2024 campaigns
 SELECT
     cs.campaign_id,
 	cs.campaign_name, 

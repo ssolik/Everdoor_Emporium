@@ -226,11 +226,13 @@ targets AS (
 
 -- Final selection: match transactions to active campaigns within the attribution window and by target segment
 SELECT
-    cs.campaign_name, 
+    cs.campaign_id,
+	cs.campaign_name, 
     cs.target_segment, 
     cs.segment_type, 
     cs.start_date, 
     cs.attrition_window_end_date,
+	t.transaction_id,
     t.age, 
     t.customer_city, 
     t.customer_state, 
@@ -247,7 +249,8 @@ JOIN targets t
         OR cs.target_segment = t.geo_segment 
         OR cs.target_segment = t.product_segment
     )
-WHERE YEAR(cs.end_date) = '2024';
+WHERE YEAR(cs.end_date) = '2024'
+ORDER BY t.transaction_id, cs.campaign_id;
 
 /* ---------------------------------------------------
    Export output to csv to visualize in Tableau

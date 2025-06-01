@@ -1,7 +1,7 @@
 /* ------------------------------------------------
- Title: 		    Everdoor Emporium Project
- Author: 		    Scott Solik
- Last Modified:     June 1, 2025
+ Title:         Everdoor Emporium Project
+ Author:        Scott Solik
+ Last Modified: June 1, 2025
 --------------------------------------------------*/
 
 /* -----------------------------

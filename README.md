@@ -2,7 +2,7 @@
 ## Project Background
 Everdoor Emporium is an omnichannel retail store selling a variety of home goods, kitchenware, and electronics products. This project was designed to explore and analyze customer engagement and marketing performance for 2024 across both digital and physical channels. 
 
-Technical Details about the project can be found here: <a href="#project-technical-details">Project Technical Details</a>
+Technical Details about the project can be found here: [Project Technical Details](#project-technical-details)
 
 ## Everdoor Emporium Sales Performance 2024
 
